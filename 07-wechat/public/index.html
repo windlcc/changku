@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>聊天室</title>
+    <link rel="stylesheet" href="lib/jquery-mCustomScrollbar/css/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="lib/jquery-emoji/css/jquery.emoji.css"/>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+ 
+    <div class="login_box" style="display: block;opacity: 0.8;">
+      <h3>QQ</h3>
+      
+      <input type="text" placeholder="请输入用户名" id="username" />
+  <form>
+      <input type="password" placeholder="请输入密码" autocomplete="new-password" id="password"/>
+    </form>
+      <p2>选择头像</p2>
+      <ul class="avatar" id="login_avatar">
+        <li class="now"><img src="images/lx01.jpg" alt="" /></li>
+        <li><img src="images/lx02.jpg" alt="" /></li>
+        <li><img src="images/wzk.jpg" alt="" /></li>
+        <li><img src="images/tbr.jpg" alt="" /></li>
+        <li><img src="images/avatar05.jpg" alt="" /></li>
+        <li><img src="images/avatar06.jpg" alt="" /></li>
+        <li><img src="images/avatar07.jpg" alt="" /></li>
+        <li><img src="images/avatar08.jpg" alt="" /></li>
+        <li><img src="images/avatar09.jpg" alt="" /></li>
+        <li><img src="images/avatar10.jpg" alt="" /></li>
+      </ul>
+      <button class="weui-btn" id="loginBtn" style="background-color: skyblue;">登录</button>
+      <button class="weui-btn" id="registerBtn" style="background-color: skyblue;">注册</button>
+    </div>
+  <div class="register_box" style="display: none;opacity: 0.8;">
+    <h3>QQ</h3>
+    <input type="text" placeholder="请输入用户名" id="register_username" />
+  <form>
+      <input type="password" placeholder="请输入密码" autocomplete="new-password" id="register_password"/>
+    </form>
+      <p2>选择头像</p2>
+      <ul class="avatar" id="register_avatar">
+        <li class="now"><img src="images/lx01.jpg" alt="" /></li>
+        <li><img src="images/lx02.jpg" alt="" /></li>
+        <li><img src="images/wzk.jpg" alt="" /></li>
+        <li><img src="images/tbr.jpg" alt="" /></li>
+        <li><img src="images/avatar05.jpg" alt="" /></li>
+        <li><img src="images/avatar06.jpg" alt="" /></li>
+        <li><img src="images/avatar07.jpg" alt="" /></li>
+        <li><img src="images/avatar08.jpg" alt="" /></li>
+        <li><img src="images/avatar09.jpg" alt="" /></li>
+        <li><img src="images/avatar10.jpg" alt="" /></li>
+      </ul>
+      <button class="weui-btn" id="register" style="background-color: skyblue;">注册</button>
+  </div>
+    <div class="container" style="display: none;opacity: 0.9;">
+      <!-- 用户列表 -->
+      <div class="user-list" >
+       
+        <div class="header">
+          <div class="avatar">
+            <img class="img avatar_url" src="images/avatar2.jpg" alt="" />
+          </div>
+          <div class="info">
+            <!--  -->
+            <h3 class="username"></h3>
+          </div>
+        </div>
+        <div class="title"><h3>用户列表</h3></div>
+        <ul>
+          
+        </ul>
+      </div>
+      <!-- 聊天主窗口 -->
+      <div class="box">
+        <!-- 聊天窗口头部 -->
+        <div class="box-hd" style="background-color: aqua;"><h3>高质量程序员(<span id="userCount">99</span>)</h3></div>
+
+        <!-- 聊天窗口主体区域 -->
+        <div class="box-bd">
+          <!--
+          <div class="system">
+            <p class="message_system">
+              <span class="content">"往事随风"邀请你和"Boy"加入了群聊</span>
+            </p>
+          </div>
+          <div class="message-box">
+            <div class="my message">
+              <img class="avatar" src="images/avatar2.jpg" alt="" />
+              <div class="content">
+                <div class="bubble">
+                  <div class="bubble_cont">在干嘛</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="message-box">
+            <div class="other message">
+              <img class="avatar" src="images/avatar02.jpg" alt="" />
+              <div class="content">
+                <div class="nickname">小美</div>
+                <div class="bubble">
+                  <div class="bubble_cont">吃饭</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+
+        <!-- 聊天窗口底部区域 -->
+        <div class="box-ft">
+          <!-- 工具栏 -->
+          <div class="toolbar">
+            <a href="javascript:;" title="表情" class="face"></a>
+            <a href="javascript:;" title="截屏" class="screen-cut">
+            </a>
+            <a href="javascript:;" title="图片" class="file">
+            
+              <label for="file"></label>
+              <input type="file" id="file" style="display: none;">
+            </a>
+          </div>
+          <!-- 内容输入区域 -->
+          <div class="content">
+            <!-- div添加一个属性：contenteditable -->
+            <div class="text" id="content" contenteditable></div>
+          </div>
+          <!-- 发送按钮 -->
+          <div class="action">
+            <span class="desc">按下Ctrl+Enter发送</span>
+            <a class="btn-send" id="btn-send" href="javascript:;">发送</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- 引入socketio -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="lib/jquery-mCustomScrollbar/script/jquery.mCustomScrollbar.min.js"></script>
+    <script src="lib/jquery-emoji/js/jquery.emoji.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
